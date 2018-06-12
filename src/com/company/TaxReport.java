@@ -12,25 +12,13 @@ public class TaxReport {
         setGrandTotal();
     }
 
-    public String getTaxableSubtotal() {
-        return taxableSubtotal;
-    }
-
     public void setTaxableSubtotal(double taxableSubtotal) {
         this.taxableSubtotal = String.format("%.02f", taxableSubtotal);
-    }
-
-    public String getTax() {
-        return tax;
     }
 
     public void setTax() {
         double tax = Double.parseDouble(taxableSubtotal) * 0.05;
         this.tax = String.format("%.02f", tax);
-    }
-
-    public String getGrandTotal() {
-        return grandTotal;
     }
 
     public void setGrandTotal() {

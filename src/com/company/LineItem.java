@@ -8,18 +8,18 @@ public class LineItem extends ItemDatabase {
     protected String price;
     protected String total;
 
-    public LineItem(String itemCode, int quantity) {
+    public LineItem(String itemPurchased, int quantity) {
         super();
-        setItemCode(itemCode);
         setQuantity(quantity);
-        setDescription();
+        setDescription(itemPurchased);
+        setItemCode();
         setPrice();
         setTotal();
 
     }
 
-    public void setItemCode(String itemCode) {
-        this.itemCode = itemCode;
+    public void setItemCode() {
+        itemCode = itemDescriptionAndCode.get(description);
     }
 
 
@@ -27,8 +27,20 @@ public class LineItem extends ItemDatabase {
         this.quantity = quantity;
     }
 
-    public void setDescription() {
-        description = itemCodeAndDescription.get(itemCode);
+    public void setDescription(String itemPurchased) {
+        for (String item : itemDescriptionAndCode.keySet()) {
+            if (item.toLowerCase().contains(itemPurchased)) {
+                description = item;
+            } else if (item.toUpperCase().contains(itemPurchased)) {
+                description = item;
+            } else if (item.contains(itemPurchased)) {
+                description = item;
+            }
+        }
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void setPrice() {
