@@ -9,35 +9,33 @@ public class Invoice {
 
         Scanner keyboard = new Scanner(System.in);
 
-        ArrayList<ItemList> itemLists = new ArrayList<>();
+        ArrayList<LineItem> lineItems = new ArrayList<>();
 
-        String itemCode, description;
-        double price, subtotal = 0.0;
-        int quantity, loopCount = 0;
+        String itemCode, exit = "y";
+        double subtotal = 0.0;
+        int quantity;
 
-        while (loopCount != 1) {
+        while (exit.equalsIgnoreCase("y")) {
 
-            System.out.print((loopCount == 0) ? "Enter item code: "
-                    : "\nEnter item code: ");
+            System.out.print("Enter item code: ");
             itemCode = keyboard.nextLine();
             System.out.print("Enter item quantity: ");
             quantity = keyboard.nextInt();
-            System.out.print("Enter item description: ");
-            keyboard.nextLine();
-            description = keyboard.nextLine();
-            System.out.print("Enter item price: ");
-            price = keyboard.nextDouble();
-            keyboard.nextLine();
 
-            ItemList itemList = new ItemList(itemCode, quantity, description, price);
-            itemLists.add(itemList);
-            subtotal += Double.parseDouble(itemList.getTotal());
-            loopCount++;
+            LineItem lineItem = new LineItem(itemCode, quantity);
+            lineItems.add(lineItem);
+            subtotal += Double.parseDouble(lineItem.getTotal());
+
+            System.out.print("Would you like to continue adding items (\"y\" or \"n\")? ");
+            keyboard.nextLine();
+            exit = keyboard.nextLine();
+            System.out.println();
+
         }
 
         System.out.println("\n       Item            Quantity               Description                  Price             Total      \n" +
                            " ----------------  ----------------  ------------------------------  ----------------  -----------------\n");
-        for (ItemList s : itemLists) {
+        for (LineItem s : lineItems) {
             System.out.println(s);
         }
         TaxReport taxReport = new TaxReport(subtotal);

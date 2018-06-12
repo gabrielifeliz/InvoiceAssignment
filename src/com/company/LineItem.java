@@ -1,8 +1,6 @@
 package com.company;
 
-import java.text.NumberFormat;
-
-public class ItemList {
+public class LineItem extends ItemDatabase {
 
     protected String itemCode;
     protected int quantity;
@@ -10,12 +8,12 @@ public class ItemList {
     protected String price;
     protected String total;
 
-    public ItemList(String itemCode, int quantity,
-                    String description, double price) {
+    public LineItem(String itemCode, int quantity) {
+        super();
         setItemCode(itemCode);
         setQuantity(quantity);
-        setDescription(description);
-        setPrice(price);
+        setDescription();
+        setPrice();
         setTotal();
 
     }
@@ -40,15 +38,16 @@ public class ItemList {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription() {
+        description = itemCodeAndDescription.get(itemCode);
     }
 
     public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice() {
+        double price = itemDescriptionAndPrice.get(description);
         this.price = String.format("%.02f", price);
     }
 
@@ -63,7 +62,8 @@ public class ItemList {
 
     @Override
     public String toString() {
-        return  "       " + itemCode + "               " + quantity + "                   " + description + "                    " + price + "            " + total + "    \n";
+        return "       " + itemCode + "               " + quantity + "                   "
+                    + description + "                    " + price + "            " + total + "    \n";
 
     }
 }
