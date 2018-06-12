@@ -18,32 +18,17 @@ public class LineItem extends ItemDatabase {
 
     }
 
-    public String getItemCode() {
-        return itemCode;
-    }
-
     public void setItemCode(String itemCode) {
         this.itemCode = itemCode;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public void setDescription() {
         description = itemCodeAndDescription.get(itemCode);
-    }
-
-    public String getPrice() {
-        return price;
     }
 
     public void setPrice() {

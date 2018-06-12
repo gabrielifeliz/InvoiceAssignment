@@ -22,10 +22,13 @@ public class Invoice {
             System.out.print("Enter item quantity: ");
             quantity = keyboard.nextInt();
 
-            LineItem lineItem = new LineItem(itemCode, quantity);
-            lineItems.add(lineItem);
-            subtotal += Double.parseDouble(lineItem.getTotal());
-
+            try {
+                LineItem lineItem = new LineItem(itemCode, quantity);
+                lineItems.add(lineItem);
+                subtotal += Double.parseDouble(lineItem.getTotal());
+            } catch (Exception e) {
+                System.out.println("No book found");
+            }
             System.out.print("Would you like to continue adding items (\"y\" or \"n\")? ");
             keyboard.nextLine();
             exit = keyboard.nextLine();
