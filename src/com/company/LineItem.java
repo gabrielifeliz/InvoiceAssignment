@@ -14,7 +14,6 @@ public class LineItem extends ItemDatabase {
      * Two of these setters receive an argument from this constructor
      * (setQuantity and setDescription)*/
     public LineItem(String itemPurchased, int quantity) {
-        super();
         setQuantity(quantity);
         setDescription(itemPurchased);
         setItemCode();

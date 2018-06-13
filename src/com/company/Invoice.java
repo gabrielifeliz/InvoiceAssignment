@@ -79,6 +79,7 @@ public class Invoice {
         for (LineItem s : lineItems) {
             System.out.println(s);
         }
+
         // Create TaxReport object to process tax report
         TaxReport taxReport = new TaxReport(taxableSubtotal, untaxableSubtotal);
         // Display taxReport toString method, which contains the tax report
