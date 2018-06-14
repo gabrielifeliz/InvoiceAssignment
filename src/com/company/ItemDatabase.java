@@ -11,11 +11,11 @@ import java.util.HashMap;
 public class ItemDatabase {
 
     // Create protected data field so that subclasses access their value
-    protected HashMap<String, String> itemDescriptionAndCode = new HashMap<>();
+    protected HashMap<String, String> itemCodeAndDescription = new HashMap<>();
     protected HashMap<String, Double> itemDescriptionAndPrice = new HashMap<>();
 
     /* Create a no-arg constructor that sets the two HashMaps
-    * itemDescriptionAndCode and itemDescriptionAndPrice */
+    * itemCodeAndDescription and itemDescriptionAndPrice */
     public ItemDatabase() {
         setItemCodeAndDescription();
         setItemDescriptionAndPrice();
@@ -36,11 +36,11 @@ public class ItemDatabase {
      * in the database and their codes */
     public void setItemCodeAndDescription() {
 
-        itemDescriptionAndCode.put("Java Book", "J001");
-        itemDescriptionAndCode.put("Cobol Book", "C001");
-        itemDescriptionAndCode.put("Python Book", "P001");
-        itemDescriptionAndCode.put("C++ Book", "C002");
-        itemDescriptionAndCode.put("HTML Book", "H001");
-        itemDescriptionAndCode.put("MySQL Book", "S001");
+        itemCodeAndDescription.put("J001", "Java Book");
+        itemCodeAndDescription.put("C001","Cobol Book");
+        itemCodeAndDescription.put("P001", "Python Book");
+        itemCodeAndDescription.put("C002", "C++ Book");
+        itemCodeAndDescription.put("H001", "HTML Book");
+        itemCodeAndDescription.put("S001", "MySQL Book");
     }
 }

@@ -15,16 +15,15 @@ public class LineItem extends ItemDatabase {
      * (setQuantity and setDescription)*/
     public LineItem(String itemPurchased, int quantity) {
         setQuantity(quantity);
-        setDescription(itemPurchased);
-        setItemCode();
+        setItemCode(itemPurchased);
+        setDescription();
         setPrice();
         setTotal();
     }
 
-    /* This method is responsible for assigning a value to the item code with the HashMap
-    * itemDescriptionAndCode based on the description from user input*/
-    public void setItemCode() {
-        itemCode = itemDescriptionAndCode.get(description);
+    /* This method is responsible for assigning a value to item code from user input */
+    public void setItemCode(String itemPurchased) {
+        itemCode = itemPurchased;
     }
 
     /* This method is responsible for assigning a value to quantity from user input */
@@ -32,14 +31,10 @@ public class LineItem extends ItemDatabase {
         this.quantity = quantity;
     }
 
-    /* This method is responsible for assigning the item code with the HashMap
-     * itemDescriptionAndCode based on the description from user input*/
-    public void setDescription(String itemPurchased) {
-        for (String item : itemDescriptionAndCode.keySet()) {
-            if (item.toUpperCase().contains(itemPurchased.toUpperCase())) {
-                description = item;
-            }
-        }
+    /* This method is responsible for assigning a value to the item description with the HashMap
+    * itemCodeAndDescription based on the item code from user input*/
+    public void setDescription() {
+        description = itemCodeAndDescription.get(itemCode);
     }
 
     /* This method is responsible for returning value of description */

@@ -24,10 +24,10 @@ public class Invoice {
         int quantity;
 
         // Repeat actions under while loop until exit does not equals "Y" or "y"
-        while (exit.equalsIgnoreCase("y")) {
+        while (!exit.equalsIgnoreCase("n")) {
 
             // Prompt the user for the item purchased and get user input
-            System.out.print("Enter item purchased: ");
+            System.out.print("Enter item purchased (enter item code): ");
             itemPurchased = keyboard.nextLine();
             // Prompt the user for the item quantity and get user input
             System.out.print("Enter item quantity: ");
