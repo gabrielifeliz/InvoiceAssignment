@@ -1,5 +1,7 @@
 package com.company;
 
+import java.awt.*;
+import java.io.*;
 import java.util.*;
 
 public class Invoice {
@@ -72,17 +74,62 @@ public class Invoice {
 
         }
 
+        keyboard.close();
+
+        StringBuilder invoiceReport = new StringBuilder();
         // Display invoice heading
-        System.out.println("\n       Item            Quantity               Description                  Price             Total      \n" +
+        invoiceReport.append("\n       Item            Quantity               Description                  Price             Total      \n" +
                            " ----------------  ----------------  ------------------------------  ----------------  -----------------\n");
         // Display several line items using an enhanced for loop
         for (LineItem s : lineItems) {
-            System.out.println(s);
+            invoiceReport.append(s + "\n");
         }
 
         // Create TaxReport object to process tax report
         TaxReport taxReport = new TaxReport(taxableSubtotal, untaxableSubtotal);
         // Display taxReport toString method, which contains the tax report
-        System.out.println(taxReport);
+        invoiceReport.append(taxReport);
+
+        /* Display invoice report in console:
+            System.out.println(invoiceReport);
+        */
+
+        generateInvoiceInHtmlFile(invoiceReport);
+
+
+    }
+
+    private static void generateInvoiceInHtmlFile(StringBuilder invoiceReport) {
+        try {
+            // Create invoice.html
+            File htmlFile = new File("invoice.html");
+            // Create BufferReader object to read on HTML file
+            BufferedWriter bw = new BufferedWriter(new FileWriter(htmlFile));
+            // Write the invoice report in HTML form
+            bw.write("<!DOCTYPE html>\n" +
+                    "<html>\n" +
+                    "<head>\n" +
+                    "    <meta charset=\"UTF-8\">\n" +
+                    "    <title>Invoice Report</title>\n" +
+                    "</head>\n" +
+                    "<body>\n" +
+                    "<div><h1>Invoice Report</h1></div>\n" +
+                    "<pre style='text-align: left; border:\n" +
+                    "\"1px dashed #008DEF; line-height: 18px; padding: 15px; " +
+                    "font-size: 13px; font-family:Courier New, Courier, monospace; " +
+                    "overflow: auto;'>\n" +
+                    "\n" + invoiceReport.toString() + "\n" +
+                    "</pre>\n" +
+                    "</body>\n" +
+                    "</html>");
+            // Close BufferReader
+            bw.close();
+
+            // Launch invoice.html with default browser
+            Desktop.getDesktop().browse(htmlFile.toURI());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

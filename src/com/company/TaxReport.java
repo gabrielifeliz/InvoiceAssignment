@@ -56,8 +56,8 @@ public class TaxReport {
     /* This method is responsible for returning the invoice report*/
     @Override
     public String toString() {
-        return "Taxable subtotal: $" + taxableSubtotal +
-                "\nUntaxable subtotal: $" + untaxableSubtotal
-                + "\nTax: $" + tax + "\nGrand Total: $" + grandTotal;
+        return "\nTaxable subtotal: $" + taxableSubtotal +
+                "\n\nUntaxable subtotal: $" + untaxableSubtotal
+                + "\n\nTax: $" + tax + "\n\nGrand Total: $" + grandTotal;
     }
 }
